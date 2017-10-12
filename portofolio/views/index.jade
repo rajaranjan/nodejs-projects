@@ -1,0 +1,45 @@
+extends layout
+
+block content
+    section#portfolio
+      .container
+        h2.text-center Portfolio
+        hr.star-primary
+        .row
+         each row,i in rows
+          .col-sm-4.portfolio-item
+            a.portfolio-link(href='#portfolioModal#{i}', data-toggle='modal')
+              .caption
+                .caption-content
+                  i.fa.fa-search-plus.fa-3x
+              img.img-fluid(src='img/portfolio/#{row.image}', alt='')
+    
+    each row,i in rows
+     div(id='portfolioModal#{i}').portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .modal-dialog(role='document')
+        .modal-content
+          .close-modal(data-dismiss='modal')
+            .lr
+              .rl
+          .container
+            .row
+              .col-lg-8.mx-auto
+                .modal-body
+                  h2 #{row.title}
+                  hr.star-primary
+                  img.img-fluid.img-centered(src='img/portfolio/#{row.image}', alt='')
+                  p #{row.description}
+                  ul.list-inline.item-details
+                    li
+                      | Client:
+                      strong #{row.client}
+                    li
+                      | Date:
+                      strong #{row.date}
+                    li
+                      | Service:
+                      strong #{row.service}
+                  button.btn.btn-success(type='button', data-dismiss='modal')
+                    i.fa.fa-times
+                    |                     Close
+    
